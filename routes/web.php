@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/plantilla', function () {
+    return view('admin.layouts.main');
+});
+
 // Crear una ruta de prueba
 Route::get('hola', function () {
     return 'Hola desde web.php';
