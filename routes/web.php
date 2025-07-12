@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\PruebaController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,25 +8,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/plantilla', function () {
-    return view('admin.layouts.main');
-});
+// Route::get('/plantilla', function () {
+//     return view('admin.layouts.main');
+// });
 
 // Crear una ruta de prueba
 Route::get('hola', function () {
     return 'Hola desde web.php';
-});
+})->name('practica1');
 
 // Paso de parametros
 Route::get('persona/{nombre}/{edad}', function ($nombre, $edad) {
     return 'Mi nombre es ' . $nombre . ', tengo ' . $edad . ' años.';
-});
+})->name('practica2');
 
 // Valores por defecto
 Route::get('estudiante/{nombre?}', function ($nombre = 'Juan') {
     return 'Nombre del estudiante: ' . $nombre;
-});
+})->name('practica3');
 
+// Validacion de parametros
 Route::get('/usuario/{id}', function ($id) {
     return "ID de usuario: " . $id;
 })->where('id', '[0-9]+'); // Solo acepta números
@@ -34,7 +36,7 @@ Route::get('/categoria/{slug}', function ($slug) {
     return "Categoría: " . $slug;
 })->where('slug', '[A-Za-z\-]+'); // Solo letras y guiones
 
-
+// Objetos JSON
 Route::get('/posts', function () {
     return response()->json([
         'posts' => [
@@ -47,13 +49,13 @@ Route::get('/posts', function () {
 Route::group(['prefix' => 'saludo'], function () {
     Route::get('dia', function () {
         return 'Buenos dias';
-    });
+    })->name('saludo.dia');
     Route::get('tarde', function () {
         return 'Buenas tardes';
-    });
+    })->name('saludo.tarde');
     Route::get('noche', function () {
         return 'Buenas noches';
-    });
+    })->name('saludo.noche');
 });
 
 
@@ -71,4 +73,9 @@ Route::get('prueba/persona/{nombre}/{edad}', [PruebaController::class, 'datosPer
 
 Route::get('prueba/componentes', function () {
     return view('prueba.componentes');
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
 });
