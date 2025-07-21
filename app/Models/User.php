@@ -44,4 +44,10 @@ class User extends Authenticatable {
             'password' => 'hashed',
         ];
     }
+
+    // Un usuario puede adicionar muchas peliculas
+    public function peliculas() {
+        // Retornar el tipo de relación indicando el Modelo 
+        return $this->hasMany(Pelicula::class, 'user_id', 'id');
+    }
 }

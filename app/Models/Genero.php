@@ -17,4 +17,10 @@ class Genero extends Model {
     // Indicar que las fechas para guardar y actualizar
     // las administre el framework
     public $timestamps = true;
+
+    // Un genero tiene muchas peliculas
+    public function peliculas() {
+        // Retornar el tipo de relación indicando el Modelo 
+        return $this->hasMany(Pelicula::class, 'genero_id', 'id');
+    }
 }
