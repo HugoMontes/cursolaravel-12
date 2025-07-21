@@ -28,9 +28,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         crossorigin="anonymous" />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
+    <!--begin::Font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--end::Font-awesome-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
+    @yield('styles')
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -89,8 +93,7 @@
     </script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)-->
     <!--begin::Required Plugin(Bootstrap 5)-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <!--end::Required Plugin(Bootstrap 5)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
@@ -98,88 +101,88 @@
     <!--begin::OverlayScrollbars Configure-->
     <script>
         const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
-            const Default = {
-                scrollbarTheme: "os-theme-light",
-                scrollbarAutoHide: "leave",
-                scrollbarClickScroll: true,
-            };
-            document.addEventListener("DOMContentLoaded", function () {
-                const sidebarWrapper = document.querySelector(
-                    SELECTOR_SIDEBAR_WRAPPER
-                );
-                if (
-                    sidebarWrapper &&
-                    OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined
-                ) {
-                    OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-                        scrollbars: {
-                            theme: Default.scrollbarTheme,
-                            autoHide: Default.scrollbarAutoHide,
-                            clickScroll: Default.scrollbarClickScroll,
-                        },
-                    });
-                }
-            });
+        const Default = {
+            scrollbarTheme: "os-theme-light",
+            scrollbarAutoHide: "leave",
+            scrollbarClickScroll: true,
+        };
+        document.addEventListener("DOMContentLoaded", function() {
+            const sidebarWrapper = document.querySelector(
+                SELECTOR_SIDEBAR_WRAPPER
+            );
+            if (
+                sidebarWrapper &&
+                OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined
+            ) {
+                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                    scrollbars: {
+                        theme: Default.scrollbarTheme,
+                        autoHide: Default.scrollbarAutoHide,
+                        clickScroll: Default.scrollbarClickScroll,
+                    },
+                });
+            }
+        });
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!-- Image path runtime fix -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-                // Find the link tag for the main AdminLTE CSS file.
-                const cssLink = document.querySelector(
-                    'link[href*="css/adminlte.css"]'
-                );
-                if (!cssLink) {
-                    return; // Exit if the link isn't found
-                }
+            // Find the link tag for the main AdminLTE CSS file.
+            const cssLink = document.querySelector(
+                'link[href*="css/adminlte.css"]'
+            );
+            if (!cssLink) {
+                return; // Exit if the link isn't found
+            }
 
-                // Extract the base path from the CSS href.
-                // e.g., from "../css/adminlte.css", we get "../"
-                // e.g., from "./css/adminlte.css", we get "./"
-                const cssHref = cssLink.getAttribute("href");
-                const deploymentPath = cssHref.slice(
-                    0,
-                    cssHref.indexOf("css/adminlte.css")
-                );
+            // Extract the base path from the CSS href.
+            // e.g., from "../css/adminlte.css", we get "../"
+            // e.g., from "./css/adminlte.css", we get "./"
+            const cssHref = cssLink.getAttribute("href");
+            const deploymentPath = cssHref.slice(
+                0,
+                cssHref.indexOf("css/adminlte.css")
+            );
 
-                // Find all images with absolute paths and fix them.
-                document
-                    .querySelectorAll('img[src^="/assets/"]')
-                    .forEach((img) => {
-                        const originalSrc = img.getAttribute("src");
-                        if (originalSrc) {
-                            const relativeSrc = originalSrc.slice(1); // Remove leading '/'
-                            img.src = deploymentPath + relativeSrc;
-                        }
-                    });
-            });
+            // Find all images with absolute paths and fix them.
+            document
+                .querySelectorAll('img[src^="/assets/"]')
+                .forEach((img) => {
+                    const originalSrc = img.getAttribute("src");
+                    if (originalSrc) {
+                        const relativeSrc = originalSrc.slice(1); // Remove leading '/'
+                        img.src = deploymentPath + relativeSrc;
+                    }
+                });
+        });
     </script>
     <!--begin::Bootstrap Tooltips-->
     <script>
         const tooltipTriggerList = document.querySelectorAll(
-                '[data-bs-toggle="tooltip"]'
-            );
-            tooltipTriggerList.forEach((tooltipTriggerEl) => {
-                new bootstrap.Tooltip(tooltipTriggerEl);
-            });
+            '[data-bs-toggle="tooltip"]'
+        );
+        tooltipTriggerList.forEach((tooltipTriggerEl) => {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     </script>
     <!--end::Bootstrap Tooltips-->
     <!--begin::Bootstrap Toasts-->
     <script>
         const toastTriggerList = document.querySelectorAll(
-                '[data-bs-toggle="toast"]'
-            );
-            toastTriggerList.forEach((btn) => {
-                btn.addEventListener("click", (event) => {
-                    event.preventDefault();
-                    const toastEle = document.getElementById(
-                        btn.getAttribute("data-bs-target")
-                    );
-                    const toastBootstrap =
-                        bootstrap.Toast.getOrCreateInstance(toastEle);
-                    toastBootstrap.show();
-                });
+            '[data-bs-toggle="toast"]'
+        );
+        toastTriggerList.forEach((btn) => {
+            btn.addEventListener("click", (event) => {
+                event.preventDefault();
+                const toastEle = document.getElementById(
+                    btn.getAttribute("data-bs-target")
+                );
+                const toastBootstrap =
+                    bootstrap.Toast.getOrCreateInstance(toastEle);
+                toastBootstrap.show();
             });
+        });
     </script>
     <!--end::Bootstrap Toasts-->
     <!--end::Script-->
