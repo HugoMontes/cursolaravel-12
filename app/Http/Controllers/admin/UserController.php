@@ -16,7 +16,7 @@ class UserController extends Controller {
         // Obtener todos los registros ordenados
         // $users = User::orderBy('id', 'DESC')->get(); 
         // Listar a todos los usuarios agregando paginacion 
-        $users = User::orderBy('id', 'ASC')->paginate(5);
+        $users = User::orderBy('id', 'DESC')->paginate(5);
         // Devolvemos la vista con los usuarios
         return view('admin.user.index')->with('users', $users);
     }
@@ -40,7 +40,8 @@ class UserController extends Controller {
         // $user->password=bcrypt($request['password']);
         // Persistir usuario
         $user->save();
-        return 'Usuario registrado';
+        // return 'Usuario registrado';
+        return redirect()->route('user.index')->with('success', 'Usuario creado correctamente');
     }
 
     /**

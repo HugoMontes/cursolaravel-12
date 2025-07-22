@@ -57,7 +57,7 @@
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">@yield('title', 'Default') </h3>
+                            <h3 class="mb-0">@yield('title', 'Default')</h3>
                         </div>
                     </div>
                     <!--end::Row-->
@@ -69,6 +69,16 @@
             <div class="app-content">
                 <!--begin::Container-->
                 <div class="container-fluid">
+                    @if (session('success'))
+                        <div class="callout callout-success mb-3">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="callout callout-danger mb-3">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <!--begin::Row-->
                     @yield('content')
                     <!--end::Row-->
