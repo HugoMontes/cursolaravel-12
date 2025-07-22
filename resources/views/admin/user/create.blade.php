@@ -3,6 +3,7 @@
 @section('title', 'Nuevo Usuario')
 
 @section('content')
+    @include('admin.layouts.errors')
     <div class="card card-primary card-outline mb-4">
         <div class="card-header">
             <div class="card-title">Completar el formulario para añadir un nuevo usuario</div>
@@ -12,7 +13,7 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="name" class="form-label @error('name') is-invalid @enderror">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="name" name="name"
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
                         placeholder="Ingrese nombre completo" required />
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -20,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label @error('email') is-invalid @enderror">Correo electónico</label>
-                    <input type="email" class="form-control" id="email" name="email"
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
                         placeholder="example@domain.com" required />
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -28,7 +29,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label @error('password') is-invalid @enderror">Contraseña</label>
-                    <input type="password" class="form-control" id="password" required />
+                    <input type="password" class="form-control" id="password" name="password" required />
                     @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -37,8 +38,8 @@
                     <label for="role" class="form-label @error('role') is-invalid @enderror">Tipo de usuario</label>
                     <select name="role" class="form-select" id="role" required>
                         <option value="" disabled selected hidden>Seleccione una opción</option>
-                        <option value="member">Miembro</option>
-                        <option value="admin">Administrador</option>
+                        <option value="member" @selected(old('role') == 'member')>Miembro</option>
+                        <option value="admin" @selected(old('role') == 'admin')>Administrador</option>
                     </select>
                     @error('role')
                         <div class="invalid-feedback">{{ $message }}</div>
