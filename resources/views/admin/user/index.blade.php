@@ -43,6 +43,9 @@
                                 @endif
                             </td>
                             <td>
+                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-primary" title="Editar">
+                                    Editar
+                                </a>
                                 <form action="{{ route('user.destroy', $user->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf

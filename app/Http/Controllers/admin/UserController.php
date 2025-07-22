@@ -55,14 +55,23 @@ class UserController extends Controller {
      * Show the form for editing the specified resource.
      */
     public function edit(string $id) {
-        //
+        $user = User::find($id);
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id) {
-        //
+        // Recuperar el usuario 
+        $user = User::find($id);
+        // Actualizar los datos con los del formulario 
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->save();
+        // Redireccionar al listado de usuarios 
+        return redirect()->route('user.index')->with('success', 'Usuario ' . $user->name . ' editado correctamente');
     }
 
     /**
