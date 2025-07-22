@@ -26,6 +26,7 @@
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Tipo</th>
+                        <th>Accion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,14 @@
                                     <span class="badge bg-warning">{{ $user->role }}</span>
                                 @endif
                             </td>
+                            <td>
+                                <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                    style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -48,4 +57,32 @@
             {{ $users->links('pagination::bootstrap-5') }}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("click", function(e) {
+                if (e.target && e.target.classList.contains('btn-eliminar')) {
+                    e.preventDefault();
+                    const form = e.target.closest('form');
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "¡No podrás revertir esto!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

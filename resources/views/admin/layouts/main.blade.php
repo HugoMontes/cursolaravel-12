@@ -196,6 +196,7 @@
     </script>
     <!--end::Bootstrap Toasts-->
     <!--end::Script-->
+    @yield('scripts')
 </body>
 <!--end::Body-->
 
