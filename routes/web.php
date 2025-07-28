@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DirectorController;
 use App\Http\Controllers\admin\GeneroController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\PeliculaController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebaController;
@@ -27,6 +28,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('genero', GeneroController::class);
     Route::resource('director', DirectorController::class);
+    Route::resource('pelicula', PeliculaController::class);
 });
 
 require __DIR__ . '/auth.php';
