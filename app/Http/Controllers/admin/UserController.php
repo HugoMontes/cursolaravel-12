@@ -35,10 +35,8 @@ class UserController extends Controller {
     public function store(UserStoreRequest $request) {
         // Recuperar todos los datos del formulario en un ojbeto User 
         $user = new User($request->all());
-        // Usar bcrypt para encriptar password
-        $user->password = bcrypt($user->password);
-        // Alternativamente
-        // $user->password=bcrypt($request['password']);
+        // Observar los datos y el password cifrado
+        // dd($user);
         // Persistir usuario
         $user->save();
         // return 'Usuario registrado';
