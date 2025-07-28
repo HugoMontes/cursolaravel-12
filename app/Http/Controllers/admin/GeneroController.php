@@ -27,7 +27,7 @@ class GeneroController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        // Validacion sin crear una clase Request
+        // Adicionando validaciones directas
         $dataGenero = $request->validate(['genero' => 'max:100|required|unique:generos']);
         $genero = new Genero($dataGenero);
         $genero->save();
