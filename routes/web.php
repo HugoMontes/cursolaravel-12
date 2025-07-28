@@ -22,7 +22,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
+    Route::resource('user', UserController::class);
+    Route::resource('genero', GeneroController::class);
+    Route::resource('director', DirectorController::class);
+});
+
 require __DIR__ . '/auth.php';
+
+
 
 // Route::get('/plantilla', function () {
 //     return view('admin.layouts.main');
@@ -89,12 +98,4 @@ Route::get('prueba/persona/{nombre}/{edad}', [PruebaController::class, 'datosPer
 
 Route::get('prueba/componentes', function () {
     return view('prueba.componentes');
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
-    Route::resource('user', UserController::class);
-    Route::resource('genero', GeneroController::class);
-    Route::resource('director', DirectorController::class);
 });

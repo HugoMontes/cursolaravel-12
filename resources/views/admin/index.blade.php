@@ -1,6 +1,19 @@
 @extends('admin.layouts.main')
 @section('title', 'Escritorio')
 @section('content')
+    {{-- nombre de usuario --}}
+    <h3>Bienvenido {{ Auth::user()->name }}</h3>
+    {{-- / nombre de usuario --}}
+    {{-- logout --}}
+    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+        @csrf
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+            Cerrar Sesión
+        </a>
+    </form>
+    <br>
+    {{-- / logout --}}
+
     {{-- Llamando por la url --}}
     <a href="{{ url('hola') }}">1. Hola mundo (por url)</a><br />
     {{-- Llamando por la url --}}
