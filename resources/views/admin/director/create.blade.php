@@ -12,7 +12,7 @@
             @csrf
             <div class="card-body">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label @error('nombre') is-invalid @enderror">director</label>
+                    <label for="nombre" class="form-label @error('nombre') is-invalid @enderror">Director</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}"
                         placeholder="Ingrese nombre del director" required />
                     @error('nombre')

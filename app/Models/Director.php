@@ -19,4 +19,8 @@ class Director extends Model {
             'pelicula_id'          // FK del modelo relacionado (Pelicula)
         )->withTimestamps();
     }
+
+    public function scopeSearch($query, $nombre) {
+        return $query->where('nombre', 'LIKE', '%' . $nombre . '%');
+    }
 }

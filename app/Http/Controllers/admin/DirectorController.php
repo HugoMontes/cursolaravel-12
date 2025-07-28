@@ -10,8 +10,12 @@ class DirectorController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        $directores = Director::orderBy('id', 'ASC')->paginate(5);
+    public function index(Request $request) {
+        $query = Director::query();
+        if ($request->filled('nombre')) {
+            $query->search($request->nombre);
+        }
+        $directores = $query->orderBy('id', 'ASC')->paginate(5);
         return view('admin.director.index', compact('directores'));
     }
 

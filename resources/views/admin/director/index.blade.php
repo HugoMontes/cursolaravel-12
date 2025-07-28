@@ -17,8 +17,18 @@
                 <a href="{{ route('director.create') }}" class="btn btn-primary">Nuevo director</a>
             </div>
         </div>
-
         <div class="card-body">
+            <!-- Buscador -->
+            <form action="{{ route('director.index') }}" method="GET" class="d-flex mb-3">
+                <div class="input-group">
+                    <input type="text" name="nombre" class="form-control" placeholder="Buscar director...">
+                    <button class="btn btn-outline-secondary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <!-- /Buscador -->
+
             <table class="table">
                 <thead>
                     <tr>
