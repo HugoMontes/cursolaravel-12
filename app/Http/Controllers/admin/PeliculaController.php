@@ -9,6 +9,7 @@ use App\Models\Imagen;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PeliculaController extends Controller {
     /**
@@ -96,5 +97,58 @@ class PeliculaController extends Controller {
      */
     public function destroy(string $id) {
         //
+    }
+
+    public function consultaEloquentORM() {
+        $peliculas = Pelicula::with(['user', 'genero', 'directores'])
+            ->where('estreno', '>', now()->subYear())
+            ->orderBy('titulo')
+            ->paginate(10);
+
+        dd($peliculas);
+
+        // Crear nueva película asociada al usuario autenticado
+        $pelicula = Pelicula::create([
+            'titulo' => 'Nueva película',
+            'user_id' => Auth::user()->id,
+            // ... otros campos
+        ]);
+    }
+
+    public function queryBuilder() {
+        // Consulta con joins para obtener películas con datos de usuario
+        $peliculas = DB::table('peliculas')
+            ->join('users', 'peliculas.user_id', '=', 'users.id')
+            ->select('peliculas.*', 'users.name as autor')
+            ->where('peliculas.costo', '>', 10)
+            ->get();
+
+        dd($peliculas);
+
+        // Insertar rápido sin modelo
+        DB::table('peliculas')->insert([
+            'titulo' => 'Película rápida',
+            'user_id' => 1,
+            // ... otros campos
+        ]);
+    }
+
+    public function sqlCrudo() {
+        // Consulta compleja con SQL directo
+        $peliculas = DB::select("
+            SELECT p.*, u.name as autor, 
+                COUNT(d.id) as num_directores
+            FROM peliculas p
+            JOIN users u ON p.user_id = u.id
+            LEFT JOIN pelicula_director pd ON p.id = pd.pelicula_id
+            LEFT JOIN directores d ON pd.director_id = d.id
+            WHERE p.estreno > ?
+            GROUP BY p.id
+        ", [now()->subYear()]);
+
+        dd($peliculas);
+
+        // Llamar stored procedure
+        DB::statement('CALL actualizar_contador_peliculas(?)', [Auth::user()->id]);
     }
 }
