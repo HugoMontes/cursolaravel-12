@@ -2,10 +2,6 @@
 
 @section('title', 'Nueva Pelicula')
 
-@section('styles')
-    <link href="{{ asset('plugins/tomselect/tom-select.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
     @include('admin.layouts.errors')
     <div class="card card-primary card-outline mb-4">
@@ -53,14 +49,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="resumen" class="form-label @error('resumen') is-invalid @enderror">Resumen</label>
-                    <textarea class="form-control" id="resumen" name="resumen" placeholder="Ingrese el resumen de la pelicula" required>{{ old('resumen') }}</textarea>
+                    <textarea class="form-control textarea-resumen" id="resumen" name="resumen" style="height: 150px;"
+                        placeholder="Ingrese el resumen de la pelicula" required>
+                        {{ old('resumen') }}
+                    </textarea>
                     @error('resumen')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="directores" class="form-label @error('directores') is-invalid @enderror">Directores</label>
-                    <select name="directores[]" class="form-select select-multiple" id="directores" multiple required>
+                    <select name="directores[]" class="form-select tom-select" id="directores" multiple required>
                         <option value="" disabled selected hidden>Seleccione una opción</option>
                         @foreach ($directores as $director)
                             <option value="{{ $director->id }}" @selected(is_array(old('directores')) && in_array($director->id, old('directores')))>
@@ -95,11 +94,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('plugins/tomselect/tom-select.complete.min.js') }}"></script>
-    <script>
-        new TomSelect('.select-multiple', {
-            maxItems: 3,
-            placeholder: 'Seleccione...'
-        });
-    </script>
+    @vite(['resources/js/tomselect.js'])
 @endsection
