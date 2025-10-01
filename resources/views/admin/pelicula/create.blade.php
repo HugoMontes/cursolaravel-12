@@ -2,6 +2,10 @@
 
 @section('title', 'Nueva Pelicula')
 
+@section('styles')
+    <link href="{{ asset('plugins/tomselect/tom-select.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     @include('admin.layouts.errors')
     <div class="card card-primary card-outline mb-4">
@@ -56,7 +60,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="directores" class="form-label @error('directores') is-invalid @enderror">Directores</label>
-                    <select name="directores[]" class="form-select" id="directores" multiple required>
+                    <select name="directores[]" class="form-select select-multiple" id="directores" multiple required>
                         <option value="" disabled selected hidden>Seleccione una opción</option>
                         @foreach ($directores as $director)
                             <option value="{{ $director->id }}" @selected(is_array(old('directores')) && in_array($director->id, old('directores')))>
@@ -88,4 +92,14 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('plugins/tomselect/tom-select.complete.min.js') }}"></script>
+    <script>
+        new TomSelect('.select-multiple', {
+            maxItems: 3,
+            placeholder: 'Seleccione...'
+        });
+    </script>
 @endsection
