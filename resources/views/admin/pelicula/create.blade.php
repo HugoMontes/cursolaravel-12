@@ -97,18 +97,5 @@
 @endsection
 
 @section('scripts')
-    @vite(['resources/js/tomselect.js', 'resources/js/tinymce.js', 'resources/js/flatpickr.js'])
-    <script>
-        document.addEventListener('change', function(e) {
-            if (e.target.classList.contains('file-imagen')) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => document.getElementById('imageview').src = e.target.result;
-                    reader.readAsDataURL(file);
-                    document.getElementById('imageview').style.display = 'block';
-                }
-            }
-        });
-    </script>
+    @vite(['resources/js/tomselect.js', 'resources/js/tinymce.js', 'resources/js/flatpickr.js', 'resources/js/imageview.js'])
 @endsection

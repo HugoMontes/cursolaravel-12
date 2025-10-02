@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/js/tomselect.js",
                 "resources/js/tinymce.js",
                 "resources/js/flatpickr.js",
+                "resources/js/imageview.js",
             ],
             refresh: true,
         }),
