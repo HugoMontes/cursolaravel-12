@@ -49,7 +49,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="resumen" class="form-label @error('resumen') is-invalid @enderror">Resumen</label>
-                    <textarea class="form-control textarea-resumen" id="resumen" name="resumen" style="height: 150px;"
+                    <textarea class="form-control tinymce-editor" id="resumen" name="resumen" style="height: 150px;"
                         placeholder="Ingrese el resumen de la pelicula" required>
                         {{ old('resumen') }}
                     </textarea>
@@ -94,5 +94,5 @@
 @endsection
 
 @section('scripts')
-    @vite(['resources/js/tomselect.js'])
+    @vite(['resources/js/tomselect.js', 'resources/js/tinymce.js'])
 @endsection
