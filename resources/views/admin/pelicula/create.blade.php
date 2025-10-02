@@ -73,9 +73,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="imagen" class="form-label @error('imagen') is-invalid @enderror">Imagen</label>
-                    <input type="file" class="form-control" id="imagen" name="imagen" value="{{ old('imagen') }}"
-                        placeholder="Ingrese el imagen de la pelicula" accept="image/*" required />
+                    <input type="file" class="form-control file-imagen" id="imagen" name="imagen"
+                        value="{{ old('imagen') }}" placeholder="Ingrese el imagen de la pelicula" accept="image/*"
+                        required />
                     <small class="text-muted">Formatos aceptados: JPG, PNG, JPEG. Tamaño máximo: 2MB</small>
+                    <img id="imageview" src="#" alt="Portada de pelicula" class="img-rounded"
+                        style="max-width: 300px; display: none;" />
                     @error('imagen')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -95,4 +98,17 @@
 
 @section('scripts')
     @vite(['resources/js/tomselect.js', 'resources/js/tinymce.js'])
+    <script>
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('file-imagen')) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => document.getElementById('imageview').src = e.target.result;
+                    reader.readAsDataURL(file);
+                    document.getElementById('imageview').style.display = 'block';
+                }
+            }
+        });
+    </script>
 @endsection
