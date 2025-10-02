@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/tomselect.js",
                 "resources/js/tinymce.js",
+                "resources/js/flatpickr.js",
             ],
             refresh: true,
         }),

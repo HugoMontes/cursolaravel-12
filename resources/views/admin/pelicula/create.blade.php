@@ -41,8 +41,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="estreno" class="form-label @error('estreno') is-invalid @enderror">Estreno</label>
-                    <input type="date" class="form-control" id="estreno" name="estreno" value="{{ old('estreno') }}"
-                        placeholder="Ingrese el estreno de la pelicula" required />
+                    <input type="text" class="form-control date-picker" id="estreno" name="estreno"
+                        value="{{ old('estreno') }}" placeholder="Ingrese el estreno de la pelicula" required />
                     @error('estreno')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -97,7 +97,7 @@
 @endsection
 
 @section('scripts')
-    @vite(['resources/js/tomselect.js', 'resources/js/tinymce.js'])
+    @vite(['resources/js/tomselect.js', 'resources/js/tinymce.js', 'resources/js/flatpickr.js'])
     <script>
         document.addEventListener('change', function(e) {
             if (e.target.classList.contains('file-imagen')) {
