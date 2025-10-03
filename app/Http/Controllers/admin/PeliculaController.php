@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PeliculaRequest;
 use App\Models\Director;
 use App\Models\Genero;
 use App\Models\Imagen;
@@ -32,7 +33,7 @@ class PeliculaController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(PeliculaRequest $request) {
         // Recuperar los datos del formulario
         $pelicula = new Pelicula($request->all());
         // Recuperar el id del usuario autenticado 
