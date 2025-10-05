@@ -16,8 +16,10 @@ class PeliculaController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        return view('admin.pelicula.index');
+    public function index(Request $request) {
+        $titulo = isset($request->titulo) ? $request->titulo : '';
+        $peliculas = Pelicula::search($titulo)->orderBy('id', 'DESC')->paginate(5);
+        return view('admin.pelicula.index', compact('peliculas', 'titulo'));
     }
 
     /**
