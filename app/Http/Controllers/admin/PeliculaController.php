@@ -28,7 +28,6 @@ class PeliculaController extends Controller {
     public function create() {
         $generos = Genero::orderBy('genero', 'ASC')->get();
         $directores = Director::orderBy('nombre', 'ASC')->get();
-        // Probar con dd($generos);
         return view('admin.pelicula.create', compact('generos', 'directores'));
     }
 
@@ -45,7 +44,7 @@ class PeliculaController extends Controller {
 
         // Una vez guardado pelicula, guardar en la tabla pivote
         // attach(): Recibe un array con los ids a relacionar
-        // Probar dd($request->directores);
+        // dd($request->directores);
         $pelicula->directores()->attach($request->directores);
 
         // Manipulacion de imagenes
@@ -54,7 +53,7 @@ class PeliculaController extends Controller {
             // Recuperar archivo
             $file = $request->file('imagen');
             // Observar los datos que trae el archivo
-            // Probar dd($file);
+            // dd($file);
             // Definir un nombre unico para el archivo
             // funcion php time(): devuelve la fecha actual
             $name_file = 'cinema_' . time() . '.' . $file->getClientOriginalExtension();
@@ -85,21 +84,46 @@ class PeliculaController extends Controller {
      * Show the form for editing the specified resource.
      */
     public function edit(string $id) {
-        //
+        $pelicula = Pelicula::find($id);
+        $generos = Genero::orderBy('genero', 'ASC')->get();
+        $directores = Director::orderBy('nombre', 'ASC')->get();
+        // dd($pelicula->estreno);
+        // Para los directores seleccionados
+        // Convertir el listado de objetos en un array simple
+        $mis_directores = $pelicula->directores->pluck('id')->toArray();
+        // dd($mis_directores);
+        return view('admin.pelicula.edit', compact(
+            'pelicula',
+            'generos',
+            'directores',
+            'mis_directores'
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id) {
-        //
+        // Probar con dd($request->all()); 
+        $pelicula = Pelicula::findOrFail($id);
+        // Actualizar pelicula
+        $pelicula->update($request->all());
+        // Actualizar tabla pivote directores
+        $pelicula->directores()->sync($request->directores);
+        // Preparar el mensaje ha mostrar
+        $mensaje = 'Se ha editado ' . $pelicula->titulo . ' exitosamente.';
+        // Redireccionar al listado de usuarios
+        return redirect()->route('pelicula.index')->with('success', $mensaje);
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
-        //
+        $pelicula = Pelicula::find($id);
+        $pelicula->delete();
+        $mensaje = 'Se ha eliminado ' . $pelicula->titulo . ' exitosamente.';
+        return redirect()->route('pelicula.index')->with('success', $mensaje);
     }
 
     public function consultaEloquentORM() {
