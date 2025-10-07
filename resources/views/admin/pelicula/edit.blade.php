@@ -47,8 +47,8 @@
                 <div class="mb-3">
                     <label for="estreno" class="form-label @error('estreno') is-invalid @enderror">Estreno</label>
                     <input type="text" class="form-control date-picker" id="estreno" name="estreno"
-                        value="{{ old('estreno', \Carbon\Carbon::parse($pelicula->estreno)->format('d/m/Y')) }}"
-                        placeholder="Ingrese el estreno de la pelicula" required />
+                        value="{{ old('estreno', $pelicula->estreno) }}" placeholder="Ingrese el estreno de la pelicula"
+                        required />
                     @error('estreno')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

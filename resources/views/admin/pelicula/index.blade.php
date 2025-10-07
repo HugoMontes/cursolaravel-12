@@ -60,7 +60,7 @@
                                         Eliminar
                                     </button>
                                 </form>
-                                <a href="{{ route('pelicula.edit', $pelicula->id) }}" class="btn btn-primary">
+                                <a href="{{ route('pelicula.edit', $pelicula->id) }}" class="btn btn-sm btn-primary">
                                     Editar
                                 </a>
                             </td>
