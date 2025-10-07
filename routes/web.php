@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DirectorController;
 use App\Http\Controllers\admin\GeneroController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\ImagenController;
 use App\Http\Controllers\admin\PeliculaController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +30,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('genero', GeneroController::class);
     Route::resource('director', DirectorController::class);
     Route::resource('pelicula', PeliculaController::class);
+    Route::get('/imagen', [ImagenController::class, 'index'])->name('imagen.index');
 });
 
 require __DIR__ . '/auth.php';
