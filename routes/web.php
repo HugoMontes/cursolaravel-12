@@ -8,11 +8,13 @@ use App\Http\Controllers\admin\PeliculaController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('web.index');
 });
+Route::get('/reviews', [WebController::class, 'reviews'])->name('web.reviews');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
