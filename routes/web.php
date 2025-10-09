@@ -11,7 +11,7 @@ use App\Http\Controllers\PruebaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web.index');
 });
 
 Route::get('/dashboard', function () {
@@ -34,12 +34,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-
-
-// Route::get('/plantilla', function () {
-//     return view('admin.layouts.main');
-// });
 
 // Crear una ruta de prueba
 Route::get('hola', function () {
