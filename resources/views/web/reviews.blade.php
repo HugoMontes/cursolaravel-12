@@ -29,7 +29,9 @@
                         </div>
                         <div class="review-info">
                             <a class="span" href="single.html">{{ $pelicula->titulo }}</a>
-                            <p class="dirctr">Estreno {{ $pelicula->estreno }}</p>
+                            <p class="dirctr">Estreno
+                                {{ Carbon\Carbon::parse($pelicula->estreno)->isoFormat('D [de] MMMM [de] YYYY') }}
+                            </p>
                             <p class="ratingview">Critic's Rating:</p>
                             <div class="rating">
                                 <span>☆</span>
