@@ -109,6 +109,7 @@
                 @endforeach
             </div>
             <div class="col-md-3 side-bar">
+                <x-genero-list titulo="Todos los Géneros" :mostrar-contador="true" />
                 <div class="featured">
                     <h3>Featured Today in Movie Reviews</h3>
                     <ul>
