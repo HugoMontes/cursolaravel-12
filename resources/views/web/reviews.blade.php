@@ -29,7 +29,7 @@
                         </div>
                         <div class="review-info">
                             <a class="span" href="single.html">{{ $pelicula->titulo }}</a>
-                            <p class="dirctr"><a href="">Estreno {{ $pelicula->estreno }}</p>
+                            <p class="dirctr">Estreno {{ $pelicula->estreno }}</p>
                             <p class="ratingview">Critic's Rating:</p>
                             <div class="rating">
                                 <span>☆</span>
