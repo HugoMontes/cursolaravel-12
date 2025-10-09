@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('web.index');
 });
 Route::get('/reviews', [WebController::class, 'reviews'])->name('web.reviews');
+Route::get('/movie/details/{id}', [WebController::class, 'viewDetails'])->name('web.movie.details');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

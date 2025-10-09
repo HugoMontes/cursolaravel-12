@@ -22,13 +22,15 @@
                 @foreach ($peliculas as $pelicula)
                     <div class="review">
                         <div class="movie-pic">
-                            <a href="single.html">
-                                <img src="{{ asset('imagenes/pelicula/' . $pelicula->imagenes[0]->nombre) }} "
+                            <a href="{{ route('web.movie.details', $pelicula->id) }}">
+                                <img src="{{ asset('imagenes/pelicula/' . $pelicula->imagenes[0]->nombre) }}"
                                     alt="" />
                             </a>
                         </div>
                         <div class="review-info">
-                            <a class="span" href="single.html">{{ $pelicula->titulo }}</a>
+                            <a class="span" href="{{ route('web.movie.details', $pelicula->id) }}">
+                                {{ $pelicula->titulo }}
+                            </a>
                             <p class="dirctr">Estreno
                                 {{ Carbon\Carbon::parse($pelicula->estreno)->isoFormat('D [de] MMMM [de] YYYY') }}
                             </p>
