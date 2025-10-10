@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">
+            <a href="{{ route('login') }}" target="_blank" class="{{ request()->routeIs('login') ? 'active' : '' }}">
                 <div class="cnt"><i class="fa-solid fa-right-to-bracket" style="font-size: 34pt;"></i></div>
             </a>
         </li>
