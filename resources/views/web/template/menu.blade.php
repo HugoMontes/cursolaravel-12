@@ -6,7 +6,7 @@
             </a>
         </li>
         <li>
-            <a href="videos.html">
+            <a href="{{ route('web.videos') }}" class="{{ request()->routeIs('web.videos') ? 'active' : '' }}">
                 <div class="video"><i class="fa-solid fa-circle-play" style="font-size: 34pt;"></i></div>
             </a>
         </li>

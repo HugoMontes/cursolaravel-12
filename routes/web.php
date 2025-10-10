@@ -11,11 +11,10 @@ use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('web.index');
-})->name('web.home');
+Route::get('/', [WebController::class, 'index'])->name('web.home');
 Route::get('/reviews', [WebController::class, 'reviews'])->name('web.reviews');
 Route::get('/movie/details/{id}', [WebController::class, 'viewDetails'])->name('web.movie.details');
+Route::get('/videos', [WebController::class, 'videos'])->name('web.videos');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
