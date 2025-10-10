@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('web.index');
-});
+})->name('web.home');
 Route::get('/reviews', [WebController::class, 'reviews'])->name('web.reviews');
 Route::get('/movie/details/{id}', [WebController::class, 'viewDetails'])->name('web.movie.details');
 

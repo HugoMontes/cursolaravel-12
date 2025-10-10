@@ -8,14 +8,14 @@
     <link href="{{ asset('web/css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
     <script src="{{ asset('web/js/jquery.min.js') }}"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     @yield('style')
     <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords"
-        content="Cinema Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <meta name="keywords" content="Cinema Responsive web template, Bootstrap Web Templates" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--webfont-->
     <link
@@ -26,25 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <!-- header-section-starts -->
     <div class="full">
-        <div class="menu">
-            <ul>
-                <li><a href="index.html">
-                        <div class="hm"><i class="home1"></i><i class="home2"></i></div>
-                    </a></li>
-                <li><a href="videos.html">
-                        <div class="video"><i class="videos"></i><i class="videos1"></i></div>
-                    </a></li>
-                <li><a href="reviews.html">
-                        <div class="cat"><i class="watching"></i><i class="watching1"></i></div>
-                    </a></li>
-                <li><a class="active" href="404.html">
-                        <div class="bk"><i class="booking"></i><i class="booking1"></i></div>
-                    </a></li>
-                <li><a href="contact.html">
-                        <div class="cnt"><i class="contact"></i><i class="contact1"></i></div>
-                    </a></li>
-            </ul>
-        </div>
+        @include('web.template.menu')
         <div class="main">
             <div class="error-content">
                 @yield('content')
