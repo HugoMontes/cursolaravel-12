@@ -12,7 +12,7 @@ class UserSeeder extends Seeder {
      */
     public function run(): void {
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Administrador',
             'email' => 'admin@example.com',
             'password' => '123456',
             'role' => 'admin',
